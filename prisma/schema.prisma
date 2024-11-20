@@ -9,3 +9,61 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model User{
+  id Int @default(autoincrement()) @id
+  nome String
+  email String @unique
+  senha String
+  departamento String
+  curso String
+  foto_perfil Bytes?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  comentarios Comentario[]
+  avaliacoes Avaliacao[]
+}
+
+model Professor{
+  id Int @default(autoincrement()) @id
+  nome String
+  departamento String
+  disciplinas Disciplina[] 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  avaliacoes Avaliacao[]
+}
+
+model Disciplina{
+  id Int @default(autoincrement()) @id
+  nome String
+  professores Professor[] 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  avaliacoes Avaliacao[]
+}
+
+model Comentario{
+  id Int @default(autoincrement()) @id
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  avaliacao Avaliacao @relation(fields: [avaliacaoId], references: [id])
+  avaliacaoId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Avaliacao{
+  id Int @default(autoincrement()) @id
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  professor Professor[]
+  disciplina Disciplina @relation(fields: [disciplinaId], references: [id])
+  disciplinaId Int
+  conteudo String
+  comentarios Comentario[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
