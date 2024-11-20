@@ -3,6 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 
 import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
+import { UpdateAvaliacaoDto } from './dto/update-avaliacao.dto';
 
 
 @Injectable()
@@ -21,10 +22,10 @@ export class AvaliacaoService {
           }
         : undefined,
         user: {
-          connect: { id: data.userId }, // Conecta ao usuário existente
+          connect: { id: data.userId },
         },
         disciplina: {
-          connect: { id: data.disciplinaId }, // Conecta à disciplina existente
+          connect: { id: data.disciplinaId },
         },
       },
     });
@@ -53,10 +54,24 @@ export class AvaliacaoService {
     });
   }
 
-  async update(id: number, data: Prisma.AvaliacaoUpdateInput) {
+  async update(id: number, data: UpdateAvaliacaoDto) {
     return this.prisma.avaliacao.update({
       where: { id },
-      data,
+      data: {
+        conteudo: data.conteudo,
+        user: data.userId ? { connect: { id: data.userId } } : undefined,
+        disciplina: data.disciplinaId
+          ? { connect: { id: data.disciplinaId } }
+          : undefined,
+        comentarios: data.comentarios
+          ? {
+              create: data.comentarios.map((comentario) => ({
+                texto: comentario.texto,
+                user: { connect: { id: comentario.autorId } },
+              })),
+            }
+          : undefined,
+      },
     });
   }
 

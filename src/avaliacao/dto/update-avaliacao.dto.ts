@@ -1,6 +1,19 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateAvaliacaoDto } from './create-avaliacao.dto';
+import { IsNotEmpty, IsInt, IsString, IsArray, IsOptional } from 'class-validator';
 
-export class UpdateAvaliacaoDto extends PartialType(CreateAvaliacaoDto) {
-  // Todos os campos do CreateAvaliacaoDto agora são opcionais
+export class UpdateAvaliacaoDto {
+    @IsInt()
+    @IsNotEmpty()
+    userId?: number;
+  
+    @IsInt()
+    @IsNotEmpty()
+    disciplinaId?: number;
+  
+    @IsString()
+    @IsNotEmpty()
+    conteudo?: string;
+  
+    @IsArray()
+    @IsOptional()
+    comentarios?: { texto: string; autorId: number }[];
 }
