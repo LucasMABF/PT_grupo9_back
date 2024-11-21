@@ -6,15 +6,14 @@ export class CreateCommentDto {
   @IsNotEmpty()
   userId: number;
 
-  @IsInt()
+ /* @IsInt()
   @IsNotEmpty()
-  disciplinaId: number;
+  disciplinaId: number;*/
 
   @IsString()
   @IsNotEmpty()
   conteudo: string;
 
-  @IsArray()
-  @IsOptional()
-  avaliacao?: {texto: string; autorId: number } [];
+  @IsInt()
+  avaliacaoId: number;
 }

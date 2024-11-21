@@ -10,14 +10,16 @@ export class CommentService {
     private readonly prisma: PrismaService
   ) {}
 
-  async create(data: Prisma.ComentarioCreateInput) {
+  async create(data: CreateCommentDto) {
     return this.prisma.comentario.create({
-         data: data,
-    })
+         data: { userId: data.userId,
+          conteudo: data.conteudo,
+          avaliacaoId: data.avaliacaoId
+    }})
   }
 
   async findAll() {
-    return `This action returns all comment`;
+    return this.prisma.comentario.findMany();
   }
 
   async findOne(id: number) {
