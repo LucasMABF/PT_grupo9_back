@@ -1,5 +1,4 @@
 import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator"
-import { ApiProper } from "@nestjs/core";
 export class CreateUsuarioDto{
     
     @IsString()
