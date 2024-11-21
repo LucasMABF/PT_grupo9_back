@@ -16,7 +16,7 @@ export class AvaliacaoService {
         comentarios: data.comentarios
         ? {
             create: data.comentarios.map((comentario) => ({
-              texto: comentario.texto,
+              conteudo: comentario.texto,
               user: { connect: { id: comentario.autorId } },
             })),
           }
@@ -66,7 +66,7 @@ export class AvaliacaoService {
         comentarios: data.comentarios
           ? {
               create: data.comentarios.map((comentario) => ({
-                texto: comentario.texto,
+                conteudo: comentario.texto,
                 user: { connect: { id: comentario.autorId } },
               })),
             }
