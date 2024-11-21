@@ -7,9 +7,9 @@ export declare class CommentService {
     create(data: Prisma.ComentarioCreateInput): Promise<{
         userId: number;
         id: number;
-        avaliacaoId: number;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     }>;
     findAll(): Promise<string>;
     findOne(id: number): Promise<string>;

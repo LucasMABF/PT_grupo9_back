@@ -9,34 +9,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CommentService = void 0;
+exports.UsuarioService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
-let CommentService = class CommentService {
+let UsuarioService = class UsuarioService {
     constructor(prisma) {
         this.prisma = prisma;
     }
     async create(data) {
-        return this.prisma.comentario.create({
+        const usuario = await this.prisma.user.create({
             data: data,
         });
     }
     async findAll() {
-        return `This action returns all comment`;
+        return await this.prisma.user.findMany();
     }
-    async findOne(id) {
-        return `This action returns a #${id} comment`;
+    async findUser(id) {
+        return await this.prisma.user.findUnique({
+            where: {
+                id: id,
+            },
+        });
     }
-    async update(id, updateCommentDto) {
-        return `This action updates a #${id} comment`;
+    async deleteUser(id) {
+        return await this.prisma.user.delete({
+            where: {
+                id: id,
+            },
+        });
     }
-    async remove(id) {
-        return `This action removes a #${id} comment`;
+    async update(id, data) {
+        return await this.prisma.user.update({
+            where: {
+                id: id,
+            },
+            data: data,
+        });
     }
 };
-exports.CommentService = CommentService;
-exports.CommentService = CommentService = __decorate([
+exports.UsuarioService = UsuarioService;
+exports.UsuarioService = UsuarioService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], CommentService);
-//# sourceMappingURL=comment.service.js.map
+], UsuarioService);
+//# sourceMappingURL=usuario.service.js.map
