@@ -17,7 +17,7 @@ let UsuarioService = class UsuarioService {
         this.prisma = prisma;
     }
     async create(data) {
-        const usuario = await this.prisma.user.create({
+        return await this.prisma.user.create({
             data: data,
         });
     }
@@ -31,7 +31,7 @@ let UsuarioService = class UsuarioService {
             },
         });
     }
-    async deleteUser(id) {
+    async remove(id) {
         return await this.prisma.user.delete({
             where: {
                 id: id,

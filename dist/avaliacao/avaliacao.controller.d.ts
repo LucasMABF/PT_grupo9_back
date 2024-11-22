@@ -4,11 +4,11 @@ import { UpdateAvaliacaoDto } from './dto/update-avaliacao.dto';
 export declare class AvaliacaoController {
     private readonly avaliacaoService;
     constructor(avaliacaoService: AvaliacaoService);
-    create(createAvaliacaoDto: CreateAvaliacaoDto): Promise<{
+    create(data: CreateAvaliacaoDto): Promise<{
+        id: number;
         userId: number;
         disciplinaId: number;
         conteudo: string;
-        id: number;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -38,21 +38,22 @@ export declare class AvaliacaoController {
             nome: string;
         };
         comentarios: {
-            userId: number;
             id: number;
+            userId: number;
+            conteudo: string;
             createdAt: Date;
             updatedAt: Date;
             avaliacaoId: number;
         }[];
     } & {
+        id: number;
         userId: number;
         disciplinaId: number;
         conteudo: string;
-        id: number;
         createdAt: Date;
         updatedAt: Date;
     })[]>;
-    findOne(id: string): Promise<{
+    findOne(id: number): Promise<{
         user: {
             id: number;
             createdAt: Date;
@@ -78,33 +79,34 @@ export declare class AvaliacaoController {
             nome: string;
         };
         comentarios: {
-            userId: number;
             id: number;
+            userId: number;
+            conteudo: string;
             createdAt: Date;
             updatedAt: Date;
             avaliacaoId: number;
         }[];
     } & {
+        id: number;
         userId: number;
         disciplinaId: number;
         conteudo: string;
-        id: number;
         createdAt: Date;
         updatedAt: Date;
     }>;
-    update(id: string, updateAvaliacaoDto: UpdateAvaliacaoDto): Promise<{
+    update(id: number, data: UpdateAvaliacaoDto): Promise<{
+        id: number;
         userId: number;
         disciplinaId: number;
         conteudo: string;
-        id: number;
         createdAt: Date;
         updatedAt: Date;
     }>;
-    remove(id: string): Promise<{
+    remove(id: number): Promise<{
+        id: number;
         userId: number;
         disciplinaId: number;
         conteudo: string;
-        id: number;
         createdAt: Date;
         updatedAt: Date;
     }>;

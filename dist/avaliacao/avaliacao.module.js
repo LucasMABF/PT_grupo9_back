@@ -9,12 +9,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AvaliacaoModule = void 0;
 const common_1 = require("@nestjs/common");
 const avaliacao_service_1 = require("./avaliacao.service");
+const avaliacao_controller_1 = require("./avaliacao.controller");
 let AvaliacaoModule = class AvaliacaoModule {
 };
 exports.AvaliacaoModule = AvaliacaoModule;
 exports.AvaliacaoModule = AvaliacaoModule = __decorate([
     (0, common_1.Module)({
-        providers: [avaliacao_service_1.AvaliacaoService]
+        providers: [avaliacao_service_1.AvaliacaoService],
+        controllers: [avaliacao_controller_1.AvaliacaoController]
     })
 ], AvaliacaoModule);
 //# sourceMappingURL=avaliacao.module.js.map

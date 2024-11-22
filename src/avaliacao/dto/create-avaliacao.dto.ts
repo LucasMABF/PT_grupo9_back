@@ -1,4 +1,10 @@
-import { IsNotEmpty, IsInt, IsString, IsArray, IsOptional } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsInt,
+  IsString,
+  IsArray,
+  IsOptional,
+} from 'class-validator';
 
 export class CreateAvaliacaoDto {
   @IsInt()

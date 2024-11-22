@@ -17,12 +17,12 @@ let AvaliacaoService = class AvaliacaoService {
         this.prisma = prisma;
     }
     async create(data) {
-        return this.prisma.avaliacao.create({ data: {
+        return await this.prisma.avaliacao.create({ data: {
                 conteudo: data.conteudo,
                 comentarios: data.comentarios
                     ? {
                         create: data.comentarios.map((comentario) => ({
-                            texto: comentario.texto,
+                            conteudo: comentario.texto,
                             user: { connect: { id: comentario.autorId } },
                         })),
                     }
@@ -37,7 +37,7 @@ let AvaliacaoService = class AvaliacaoService {
         });
     }
     async findAll() {
-        return this.prisma.avaliacao.findMany({
+        return await this.prisma.avaliacao.findMany({
             include: {
                 user: true,
                 professor: true,
@@ -47,7 +47,7 @@ let AvaliacaoService = class AvaliacaoService {
         });
     }
     async findOne(id) {
-        return this.prisma.avaliacao.findUnique({
+        return await this.prisma.avaliacao.findUnique({
             where: { id },
             include: {
                 user: true,
@@ -58,7 +58,7 @@ let AvaliacaoService = class AvaliacaoService {
         });
     }
     async update(id, data) {
-        return this.prisma.avaliacao.update({
+        return await this.prisma.avaliacao.update({
             where: { id },
             data: {
                 conteudo: data.conteudo,
@@ -69,7 +69,7 @@ let AvaliacaoService = class AvaliacaoService {
                 comentarios: data.comentarios
                     ? {
                         create: data.comentarios.map((comentario) => ({
-                            texto: comentario.texto,
+                            conteudo: comentario.texto,
                             user: { connect: { id: comentario.autorId } },
                         })),
                     }
@@ -78,7 +78,7 @@ let AvaliacaoService = class AvaliacaoService {
         });
     }
     async remove(id) {
-        return this.prisma.avaliacao.delete({
+        return await this.prisma.avaliacao.delete({
             where: { id },
         });
     }

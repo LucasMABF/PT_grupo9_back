@@ -21,57 +21,57 @@ let AvaliacaoController = class AvaliacaoController {
     constructor(avaliacaoService) {
         this.avaliacaoService = avaliacaoService;
     }
-    create(createAvaliacaoDto) {
-        return this.avaliacaoService.create(createAvaliacaoDto);
+    async create(data) {
+        return await this.avaliacaoService.create(data);
     }
-    findAll() {
-        return this.avaliacaoService.findAll();
+    async findAll() {
+        return await this.avaliacaoService.findAll();
     }
-    findOne(id) {
-        return this.avaliacaoService.findOne(+id);
+    async findOne(id) {
+        return await this.avaliacaoService.findOne(id);
     }
-    update(id, updateAvaliacaoDto) {
-        return this.avaliacaoService.update(+id, updateAvaliacaoDto);
+    async update(id, data) {
+        return await this.avaliacaoService.update(id, data);
     }
-    remove(id) {
-        return this.avaliacaoService.remove(+id);
+    async remove(id) {
+        return await this.avaliacaoService.remove(id);
     }
 };
 exports.AvaliacaoController = AvaliacaoController;
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Body)(new common_1.ValidationPipe({ whitelist: true }))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_avaliacao_dto_1.CreateAvaliacaoDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AvaliacaoController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], AvaliacaoController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
 ], AvaliacaoController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Body)(new common_1.ValidationPipe({ whitelist: true }))),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_avaliacao_dto_1.UpdateAvaliacaoDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Number, update_avaliacao_dto_1.UpdateAvaliacaoDto]),
+    __metadata("design:returntype", Promise)
 ], AvaliacaoController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
 ], AvaliacaoController.prototype, "remove", null);
 exports.AvaliacaoController = AvaliacaoController = __decorate([
     (0, common_1.Controller)('avaliacao'),

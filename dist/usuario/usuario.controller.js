@@ -16,7 +16,7 @@ exports.UsuarioController = void 0;
 const common_1 = require("@nestjs/common");
 const usuario_service_1 = require("./usuario.service");
 const create_usuario_dto_1 = require("./dto/create-usuario.dto");
-const creat_user_dto_1 = require("./dto/creat-user.dto");
+const update_usuario_dto_1 = require("./dto/update-usuario.dto");
 let UsuarioController = class UsuarioController {
     constructor(usuarioService) {
         this.usuarioService = usuarioService;
@@ -31,7 +31,7 @@ let UsuarioController = class UsuarioController {
         return await this.usuarioService.findUser(id);
     }
     async deleteUser(id) {
-        return await this.usuarioService.deleteUser(id);
+        return await this.usuarioService.remove(id);
     }
     async update(id, data) {
         return await this.usuarioService.update(id, data);
@@ -40,7 +40,7 @@ let UsuarioController = class UsuarioController {
 exports.UsuarioController = UsuarioController;
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)(common_1.ValidationPipe)),
+    __param(0, (0, common_1.Body)(new common_1.ValidationPipe({ whitelist: true }))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_usuario_dto_1.CreateUsuarioDto]),
     __metadata("design:returntype", Promise)
@@ -68,9 +68,9 @@ __decorate([
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __param(1, (0, common_1.Body)(common_1.ValidationPipe)),
+    __param(1, (0, common_1.Body)(new common_1.ValidationPipe({ whitelist: true }))),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, creat_user_dto_1.UpdateDto]),
+    __metadata("design:paramtypes", [Number, update_usuario_dto_1.UpdateUsuarioDto]),
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "update", null);
 exports.UsuarioController = UsuarioController = __decorate([

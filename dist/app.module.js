@@ -9,15 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const avaliacao_module_1 = require("./avaliacao/avaliacao.module");
+const comentario_module_1 = require("./comentario/comentario.module");
 const prisma_module_1 = require("./prisma/prisma.module");
-const comment_module_1 = require("./comment/comment.module");
 const usuario_module_1 = require("./usuario/usuario.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [avaliacao_module_1.AvaliacaoModule, comment_module_1.CommentModule, prisma_module_1.PrismaModule, usuario_module_1.UsuarioModule],
+        imports: [avaliacao_module_1.AvaliacaoModule, prisma_module_1.PrismaModule, usuario_module_1.UsuarioModule, comentario_module_1.ComentarioModule],
         controllers: [],
         providers: [],
     })

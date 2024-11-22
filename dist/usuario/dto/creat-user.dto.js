@@ -16,6 +16,7 @@ class UpdateDto {
 exports.UpdateDto = UpdateDto;
 __decorate([
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], UpdateDto.prototype, "nome", void 0);
 __decorate([
@@ -24,10 +25,12 @@ __decorate([
 ], UpdateDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], UpdateDto.prototype, "departamento", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], UpdateDto.prototype, "curso", void 0);
 //# sourceMappingURL=creat-user.dto.js.map

@@ -1,26 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Prisma } from '@prisma/client';
 
 import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
 import { UpdateAvaliacaoDto } from './dto/update-avaliacao.dto';
-
 
 @Injectable()
 export class AvaliacaoService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(data: CreateAvaliacaoDto) {
-    return this.prisma.avaliacao.create({data: {
-        conteudo: data.conteudo, 
+    return await this.prisma.avaliacao.create({
+      data: {
+        conteudo: data.conteudo,
         comentarios: data.comentarios
-        ? {
-            create: data.comentarios.map((comentario) => ({
-              conteudo: comentario.texto,
-              user: { connect: { id: comentario.autorId } },
-            })),
-          }
-        : undefined,
+          ? {
+              create: data.comentarios.map((comentario) => ({
+                conteudo: comentario.texto,
+                user: { connect: { id: comentario.autorId } },
+              })),
+            }
+          : undefined,
         user: {
           connect: { id: data.userId },
         },
@@ -32,7 +31,7 @@ export class AvaliacaoService {
   }
 
   async findAll() {
-    return this.prisma.avaliacao.findMany({
+    return await this.prisma.avaliacao.findMany({
       include: {
         user: true,
         professor: true,
@@ -43,7 +42,7 @@ export class AvaliacaoService {
   }
 
   async findOne(id: number) {
-    return this.prisma.avaliacao.findUnique({
+    return await this.prisma.avaliacao.findUnique({
       where: { id },
       include: {
         user: true,
@@ -55,7 +54,7 @@ export class AvaliacaoService {
   }
 
   async update(id: number, data: UpdateAvaliacaoDto) {
-    return this.prisma.avaliacao.update({
+    return await this.prisma.avaliacao.update({
       where: { id },
       data: {
         conteudo: data.conteudo,
@@ -76,7 +75,7 @@ export class AvaliacaoService {
   }
 
   async remove(id: number) {
-    return this.prisma.avaliacao.delete({
+    return await this.prisma.avaliacao.delete({
       where: { id },
     });
   }
