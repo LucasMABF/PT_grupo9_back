@@ -5,83 +5,83 @@ export declare class ComentarioController {
     private readonly comentarioService;
     constructor(comentarioService: ComentarioService);
     create(data: CreateCommentDto): Promise<{
-        id: number;
         userId: number;
-        avaliacaoId: number;
         conteudo: string;
+        id: number;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     }>;
     findAll(): Promise<({
         user: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
-            nome: string;
             email: string;
+            nome: string;
             senha: string;
             departamento: string;
             curso: string;
             foto_perfil: Buffer | null;
         };
         avaliacao: {
-            id: number;
             userId: number;
+            disciplinaId: number;
             conteudo: string;
+            id: number;
             createdAt: Date;
             updatedAt: Date;
-            disciplinaId: number;
         };
     } & {
-        id: number;
         userId: number;
-        avaliacaoId: number;
         conteudo: string;
+        id: number;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     })[]>;
     findOne(id: number): Promise<{
         user: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
-            nome: string;
             email: string;
+            nome: string;
             senha: string;
             departamento: string;
             curso: string;
             foto_perfil: Buffer | null;
         };
         avaliacao: {
-            id: number;
             userId: number;
+            disciplinaId: number;
             conteudo: string;
+            id: number;
             createdAt: Date;
             updatedAt: Date;
-            disciplinaId: number;
         };
     } & {
-        id: number;
         userId: number;
-        avaliacaoId: number;
         conteudo: string;
+        id: number;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     }>;
     update(id: number, data: UpdateCommentDto): Promise<{
-        id: number;
         userId: number;
-        avaliacaoId: number;
         conteudo: string;
+        id: number;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     }>;
     remove(id: number): Promise<{
-        id: number;
         userId: number;
-        avaliacaoId: number;
         conteudo: string;
+        id: number;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     }>;
 }

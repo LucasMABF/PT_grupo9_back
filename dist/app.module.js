@@ -12,12 +12,13 @@ const avaliacao_module_1 = require("./avaliacao/avaliacao.module");
 const comentario_module_1 = require("./comentario/comentario.module");
 const prisma_module_1 = require("./prisma/prisma.module");
 const usuario_module_1 = require("./usuario/usuario.module");
+const professor_module_1 = require("./professor/professor.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [avaliacao_module_1.AvaliacaoModule, prisma_module_1.PrismaModule, usuario_module_1.UsuarioModule, comentario_module_1.ComentarioModule],
+        imports: [avaliacao_module_1.AvaliacaoModule, prisma_module_1.PrismaModule, usuario_module_1.UsuarioModule, comentario_module_1.ComentarioModule, professor_module_1.ProfessorModule],
         controllers: [],
         providers: [],
     })

@@ -17,7 +17,8 @@ let AvaliacaoService = class AvaliacaoService {
         this.prisma = prisma;
     }
     async create(data) {
-        return await this.prisma.avaliacao.create({ data: {
+        return await this.prisma.avaliacao.create({
+            data: {
                 conteudo: data.conteudo,
                 comentarios: data.comentarios
                     ? {

@@ -9,50 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ComentarioService = void 0;
+exports.ProfessorService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma/prisma.service");
-let ComentarioService = class ComentarioService {
+let ProfessorService = class ProfessorService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async create(data) {
-        return await this.prisma.comentario.create({
-            data,
+    async findAll(order_field, order, limit) {
+        return await this.prisma.professor.findMany({
+            orderBy: [
+                { [order_field]: order }
+            ],
+            take: limit,
         });
     }
-    async findAll() {
-        return await this.prisma.comentario.findMany({
-            include: {
-                user: true,
-                avaliacao: true,
-            },
-        });
-    }
-    async findOne(id) {
-        return await this.prisma.comentario.findUnique({
-            where: { id },
-            include: {
-                user: true,
-                avaliacao: true,
-            },
-        });
-    }
-    async update(id, data) {
-        return await this.prisma.comentario.update({
-            where: { id },
-            data,
-        });
-    }
-    async remove(id) {
-        return await this.prisma.comentario.delete({
-            where: { id },
+    async findProfessor(id) {
+        return await this.prisma.professor.findUnique({
+            where: {
+                id: id,
+            }
         });
     }
 };
-exports.ComentarioService = ComentarioService;
-exports.ComentarioService = ComentarioService = __decorate([
+exports.ProfessorService = ProfessorService;
+exports.ProfessorService = ProfessorService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], ComentarioService);
-//# sourceMappingURL=comentario.service.js.map
+], ProfessorService);
+//# sourceMappingURL=professor.service.js.map

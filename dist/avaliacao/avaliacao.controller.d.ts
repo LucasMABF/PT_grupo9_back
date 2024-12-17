@@ -5,10 +5,10 @@ export declare class AvaliacaoController {
     private readonly avaliacaoService;
     constructor(avaliacaoService: AvaliacaoService);
     create(data: CreateAvaliacaoDto): Promise<{
-        id: number;
         userId: number;
         disciplinaId: number;
         conteudo: string;
+        id: number;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -38,18 +38,18 @@ export declare class AvaliacaoController {
             nome: string;
         };
         comentarios: {
-            id: number;
             userId: number;
             conteudo: string;
+            id: number;
             createdAt: Date;
             updatedAt: Date;
             avaliacaoId: number;
         }[];
     } & {
-        id: number;
         userId: number;
         disciplinaId: number;
         conteudo: string;
+        id: number;
         createdAt: Date;
         updatedAt: Date;
     })[]>;
@@ -79,34 +79,34 @@ export declare class AvaliacaoController {
             nome: string;
         };
         comentarios: {
-            id: number;
             userId: number;
             conteudo: string;
+            id: number;
             createdAt: Date;
             updatedAt: Date;
             avaliacaoId: number;
         }[];
     } & {
-        id: number;
         userId: number;
         disciplinaId: number;
         conteudo: string;
+        id: number;
         createdAt: Date;
         updatedAt: Date;
     }>;
     update(id: number, data: UpdateAvaliacaoDto): Promise<{
-        id: number;
         userId: number;
         disciplinaId: number;
         conteudo: string;
+        id: number;
         createdAt: Date;
         updatedAt: Date;
     }>;
     remove(id: number): Promise<{
-        id: number;
         userId: number;
         disciplinaId: number;
         conteudo: string;
+        id: number;
         createdAt: Date;
         updatedAt: Date;
     }>;
