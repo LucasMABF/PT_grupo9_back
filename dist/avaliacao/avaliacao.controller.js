@@ -27,6 +27,12 @@ let AvaliacaoController = class AvaliacaoController {
     async findAll() {
         return await this.avaliacaoService.findAll();
     }
+    async findAllSort(order_field, order) {
+        return await this.avaliacaoService.findAll(order_field, order);
+    }
+    async findSort(order_field, order, limit) {
+        return await this.avaliacaoService.findAll(order_field, order, limit);
+    }
     async findOne(id) {
         return await this.avaliacaoService.findOne(id);
     }
@@ -51,6 +57,23 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AvaliacaoController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)(':order_field/:order'),
+    __param(0, (0, common_1.Param)("order_field")),
+    __param(1, (0, common_1.Param)("order")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], AvaliacaoController.prototype, "findAllSort", null);
+__decorate([
+    (0, common_1.Get)(':order_field/:order/:limit'),
+    __param(0, (0, common_1.Param)("order_field")),
+    __param(1, (0, common_1.Param)("order")),
+    __param(2, (0, common_1.Param)("limit", common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, Number]),
+    __metadata("design:returntype", Promise)
+], AvaliacaoController.prototype, "findSort", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),

@@ -6,57 +6,57 @@ export declare class UsuarioService {
     constructor(prisma: PrismaService);
     create(data: CreateUsuarioDto): Promise<{
         id: number;
-        nome: string;
+        createdAt: Date;
+        updatedAt: Date;
         email: string;
+        nome: string;
         senha: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     findAll(): Promise<{
         id: number;
-        nome: string;
+        createdAt: Date;
+        updatedAt: Date;
         email: string;
+        nome: string;
         senha: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-        createdAt: Date;
-        updatedAt: Date;
     }[]>;
     findUser(id: number): Promise<{
         id: number;
-        nome: string;
+        createdAt: Date;
+        updatedAt: Date;
         email: string;
+        nome: string;
         senha: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     remove(id: number): Promise<{
         id: number;
-        nome: string;
+        createdAt: Date;
+        updatedAt: Date;
         email: string;
+        nome: string;
         senha: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     update(id: number, data: UpdateUsuarioDto): Promise<{
         id: number;
-        nome: string;
+        createdAt: Date;
+        updatedAt: Date;
         email: string;
+        nome: string;
         senha: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
 }

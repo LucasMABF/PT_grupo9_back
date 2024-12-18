@@ -6,57 +6,57 @@ export declare class UsuarioController {
     constructor(usuarioService: UsuarioService);
     create(userData: CreateUsuarioDto): Promise<{
         id: number;
-        nome: string;
+        createdAt: Date;
+        updatedAt: Date;
         email: string;
+        nome: string;
         senha: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     findAll(): Promise<{
         id: number;
-        nome: string;
+        createdAt: Date;
+        updatedAt: Date;
         email: string;
+        nome: string;
         senha: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-        createdAt: Date;
-        updatedAt: Date;
     }[]>;
     findUser(id: number): Promise<{
         id: number;
-        nome: string;
+        createdAt: Date;
+        updatedAt: Date;
         email: string;
+        nome: string;
         senha: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     deleteUser(id: number): Promise<{
         id: number;
-        nome: string;
+        createdAt: Date;
+        updatedAt: Date;
         email: string;
+        nome: string;
         senha: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
     update(id: number, data: UpdateUsuarioDto): Promise<{
         id: number;
-        nome: string;
+        createdAt: Date;
+        updatedAt: Date;
         email: string;
+        nome: string;
         senha: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
 }

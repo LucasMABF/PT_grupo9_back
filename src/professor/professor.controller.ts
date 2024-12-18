@@ -15,7 +15,7 @@ export class ProfessorController {
     return await this.professorService.findAll(order_field, order);
   }
 
-  @Get(':order_field/:order/:limit?')
+  @Get(':order_field/:order/:limit')
   async findSort(@Param("order_field") order_field: string, @Param("order") order: string, @Param("limit", ParseIntPipe) limit: number) {
     return await this.professorService.findAll(order_field, order, limit);
   }

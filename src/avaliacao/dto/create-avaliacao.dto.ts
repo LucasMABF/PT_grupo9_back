@@ -15,6 +15,10 @@ export class CreateAvaliacaoDto {
   @IsNotEmpty()
   disciplinaId: number;
 
+  @IsInt()
+  @IsNotEmpty()
+  professorId: number;
+
   @IsString()
   @IsNotEmpty()
   conteudo: string;

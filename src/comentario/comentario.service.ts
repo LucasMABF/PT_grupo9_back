@@ -23,6 +23,19 @@ export class ComentarioService {
     });
   }
 
+  async findAllByAvaliacao(id_avaliacao: number) {
+    return await this.prisma.comentario.findMany({
+      where: {
+        avaliacaoId: id_avaliacao,      
+      },
+      orderBy: [{createdAt: "asc"}],
+      include: {
+        user: true,
+        avaliacao: true,
+      },
+    });
+  }
+
   async findOne(id: number) {
     return await this.prisma.comentario.findUnique({
       where: { id },

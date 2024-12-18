@@ -26,12 +26,19 @@ export class AvaliacaoService {
         disciplina: {
           connect: { id: data.disciplinaId },
         },
+        professor: {
+          connect: {id: data.professorId},
+        }
       },
     });
   }
 
-  async findAll() {
+  async findAll(order_field?: string, order?: string, limit?: number) {
     return await this.prisma.avaliacao.findMany({
+      orderBy: [
+      {[order_field]: order}
+      ],
+      take: limit,
       include: {
         user: true,
         professor: true,
@@ -58,18 +65,6 @@ export class AvaliacaoService {
       where: { id },
       data: {
         conteudo: data.conteudo,
-        user: data.userId ? { connect: { id: data.userId } } : undefined,
-        disciplina: data.disciplinaId
-          ? { connect: { id: data.disciplinaId } }
-          : undefined,
-        comentarios: data.comentarios
-          ? {
-              create: data.comentarios.map((comentario) => ({
-                conteudo: comentario.texto,
-                user: { connect: { id: comentario.autorId } },
-              })),
-            }
-          : undefined,
       },
     });
   }

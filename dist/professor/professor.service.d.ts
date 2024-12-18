@@ -4,16 +4,16 @@ export declare class ProfessorService {
     constructor(prisma: PrismaService);
     findAll(order_field?: string, order?: string, limit?: number): Promise<{
         id: number;
-        nome: string;
-        departamento: string;
         createdAt: Date;
         updatedAt: Date;
+        nome: string;
+        departamento: string;
     }[]>;
     findProfessor(id: number): Promise<{
         id: number;
-        nome: string;
-        departamento: string;
         createdAt: Date;
         updatedAt: Date;
+        nome: string;
+        departamento: string;
     }>;
 }

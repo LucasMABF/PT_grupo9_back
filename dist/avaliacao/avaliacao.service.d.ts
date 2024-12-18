@@ -7,12 +7,13 @@ export declare class AvaliacaoService {
     create(data: CreateAvaliacaoDto): Promise<{
         userId: number;
         disciplinaId: number;
+        professorId: number;
         conteudo: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
     }>;
-    findAll(): Promise<({
+    findAll(order_field?: string, order?: string, limit?: number): Promise<({
         user: {
             id: number;
             createdAt: Date;
@@ -30,7 +31,7 @@ export declare class AvaliacaoService {
             updatedAt: Date;
             nome: string;
             departamento: string;
-        }[];
+        };
         disciplina: {
             id: number;
             createdAt: Date;
@@ -48,6 +49,7 @@ export declare class AvaliacaoService {
     } & {
         userId: number;
         disciplinaId: number;
+        professorId: number;
         conteudo: string;
         id: number;
         createdAt: Date;
@@ -71,7 +73,7 @@ export declare class AvaliacaoService {
             updatedAt: Date;
             nome: string;
             departamento: string;
-        }[];
+        };
         disciplina: {
             id: number;
             createdAt: Date;
@@ -89,6 +91,7 @@ export declare class AvaliacaoService {
     } & {
         userId: number;
         disciplinaId: number;
+        professorId: number;
         conteudo: string;
         id: number;
         createdAt: Date;
@@ -97,6 +100,7 @@ export declare class AvaliacaoService {
     update(id: number, data: UpdateAvaliacaoDto): Promise<{
         userId: number;
         disciplinaId: number;
+        professorId: number;
         conteudo: string;
         id: number;
         createdAt: Date;
@@ -105,6 +109,7 @@ export declare class AvaliacaoService {
     remove(id: number): Promise<{
         userId: number;
         disciplinaId: number;
+        professorId: number;
         conteudo: string;
         id: number;
         createdAt: Date;

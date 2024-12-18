@@ -29,6 +29,11 @@ export class ComentarioController {
     return await this.comentarioService.findAll();
   }
 
+  @Get('byavaliacao/:id_avaliacao')
+  async findAllByAvaliacao(@Param('id_avaliacao', ParseIntPipe) id_avaliacao: number) {
+    return await this.comentarioService.findAllByAvaliacao(id_avaliacao);
+  }
+
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number) {
     return await this.comentarioService.findOne(id);

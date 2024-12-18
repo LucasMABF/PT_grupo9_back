@@ -48,7 +48,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProfessorController.prototype, "findAllSort", null);
 __decorate([
-    (0, common_1.Get)(':order_field/:order/:limit?'),
+    (0, common_1.Get)(':order_field/:order/:limit'),
     __param(0, (0, common_1.Param)("order_field")),
     __param(1, (0, common_1.Param)("order")),
     __param(2, (0, common_1.Param)("limit", common_1.ParseIntPipe)),

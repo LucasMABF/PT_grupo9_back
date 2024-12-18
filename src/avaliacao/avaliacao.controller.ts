@@ -29,6 +29,16 @@ export class AvaliacaoController {
     return await this.avaliacaoService.findAll();
   }
 
+  @Get(':order_field/:order')
+  async findAllSort(@Param("order_field") order_field: string, @Param("order") order: string) {
+    return await this.avaliacaoService.findAll(order_field, order);
+  }
+
+  @Get(':order_field/:order/:limit')
+  async findSort(@Param("order_field") order_field: string, @Param("order") order: string, @Param("limit", ParseIntPipe) limit: number) {
+    return await this.avaliacaoService.findAll(order_field, order, limit);
+  }
+
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number) {
     return await this.avaliacaoService.findOne(id);

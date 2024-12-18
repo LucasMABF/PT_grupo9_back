@@ -27,6 +27,9 @@ let ComentarioController = class ComentarioController {
     async findAll() {
         return await this.comentarioService.findAll();
     }
+    async findAllByAvaliacao(id_avaliacao) {
+        return await this.comentarioService.findAllByAvaliacao(id_avaliacao);
+    }
     async findOne(id) {
         return await this.comentarioService.findOne(id);
     }
@@ -51,6 +54,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ComentarioController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('byavaliacao/:id_avaliacao'),
+    __param(0, (0, common_1.Param)('id_avaliacao', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ComentarioController.prototype, "findAllByAvaliacao", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),

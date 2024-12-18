@@ -59,7 +59,8 @@ model Avaliacao{
   id Int @default(autoincrement()) @id
   user User @relation(fields: [userId], references: [id])
   userId Int
-  professor Professor[]
+  professor Professor @relation(fields : [professorId], references: [id])
+  professorId Int
   disciplina Disciplina @relation(fields: [disciplinaId], references: [id])
   disciplinaId Int
   conteudo String
