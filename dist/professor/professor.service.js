@@ -18,9 +18,7 @@ let ProfessorService = class ProfessorService {
     }
     async findAll(order_field, order, limit) {
         return await this.prisma.professor.findMany({
-            orderBy: [
-                { [order_field]: order }
-            ],
+            orderBy: [{ [order_field]: order }],
             take: limit,
         });
     }
@@ -28,7 +26,7 @@ let ProfessorService = class ProfessorService {
         return await this.prisma.professor.findUnique({
             where: {
                 id: id,
-            }
+            },
         });
     }
 };

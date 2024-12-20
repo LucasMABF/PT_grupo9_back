@@ -6,57 +6,67 @@ export declare class UsuarioController {
     constructor(usuarioService: UsuarioService);
     create(userData: CreateUsuarioDto): Promise<{
         id: number;
-        createdAt: Date;
-        updatedAt: Date;
-        email: string;
         nome: string;
-        senha: string;
+        email: string;
         departamento: string;
         curso: string;
-        foto_perfil: Buffer | null;
+        foto_perfil: Buffer;
+        createdAt: Date;
+        updatedAt: Date;
+        comentarios: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            userId: number;
+            avaliacaoId: number;
+            conteudo: string;
+        }[];
+        avaliacoes: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            userId: number;
+            conteudo: string;
+            professorId: number;
+            disciplinaId: number;
+        }[];
     }>;
-    findAll(): Promise<{
+    deleteUser(id: number, current_id: number): Promise<{
         id: number;
-        createdAt: Date;
-        updatedAt: Date;
-        email: string;
         nome: string;
+        email: string;
         senha: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-    }[]>;
-    findUser(id: number): Promise<{
-        id: number;
         createdAt: Date;
         updatedAt: Date;
-        email: string;
-        nome: string;
-        senha: string;
-        departamento: string;
-        curso: string;
-        foto_perfil: Buffer | null;
     }>;
-    deleteUser(id: number): Promise<{
+    update(id: number, data: UpdateUsuarioDto, current_id: number): Promise<{
         id: number;
-        createdAt: Date;
-        updatedAt: Date;
-        email: string;
         nome: string;
-        senha: string;
+        email: string;
         departamento: string;
         curso: string;
-        foto_perfil: Buffer | null;
-    }>;
-    update(id: number, data: UpdateUsuarioDto): Promise<{
-        id: number;
+        foto_perfil: Buffer;
         createdAt: Date;
         updatedAt: Date;
-        email: string;
-        nome: string;
-        senha: string;
-        departamento: string;
-        curso: string;
-        foto_perfil: Buffer | null;
+        comentarios: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            userId: number;
+            avaliacaoId: number;
+            conteudo: string;
+        }[];
+        avaliacoes: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            userId: number;
+            conteudo: string;
+            professorId: number;
+            disciplinaId: number;
+        }[];
     }>;
 }

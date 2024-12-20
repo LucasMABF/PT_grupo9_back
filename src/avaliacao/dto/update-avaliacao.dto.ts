@@ -1,8 +1,4 @@
-import {
-  IsNotEmpty,
-  IsString,
-  IsOptional,
-} from 'class-validator';
+import { IsNotEmpty, IsString, IsOptional } from 'class-validator';
 
 export class UpdateAvaliacaoDto {
   @IsString()
@@ -10,4 +6,3 @@ export class UpdateAvaliacaoDto {
   @IsOptional()
   conteudo?: string;
 }
-

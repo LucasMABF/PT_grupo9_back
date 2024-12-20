@@ -1,6 +1,8 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { ProfessorService } from './professor.service';
+import { Public } from 'src/auth/decorators/Public';
 
+@Public()
 @Controller('professor')
 export class ProfessorController {
   constructor(private readonly professorService: ProfessorService) {}
@@ -11,12 +13,19 @@ export class ProfessorController {
   }
 
   @Get(':order_field/:order')
-  async findAllSort(@Param("order_field") order_field: string, @Param("order") order: string) {
+  async findAllSort(
+    @Param('order_field') order_field: string,
+    @Param('order') order: string,
+  ) {
     return await this.professorService.findAll(order_field, order);
   }
 
   @Get(':order_field/:order/:limit')
-  async findSort(@Param("order_field") order_field: string, @Param("order") order: string, @Param("limit", ParseIntPipe) limit: number) {
+  async findSort(
+    @Param('order_field') order_field: string,
+    @Param('order') order: string,
+    @Param('limit', ParseIntPipe) limit: number,
+  ) {
     return await this.professorService.findAll(order_field, order, limit);
   }
 

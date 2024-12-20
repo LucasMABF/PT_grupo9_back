@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProfessorController = void 0;
 const common_1 = require("@nestjs/common");
 const professor_service_1 = require("./professor.service");
+const Public_1 = require("../auth/decorators/Public");
 let ProfessorController = class ProfessorController {
     constructor(professorService) {
         this.professorService = professorService;
@@ -41,17 +42,17 @@ __decorate([
 ], ProfessorController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':order_field/:order'),
-    __param(0, (0, common_1.Param)("order_field")),
-    __param(1, (0, common_1.Param)("order")),
+    __param(0, (0, common_1.Param)('order_field')),
+    __param(1, (0, common_1.Param)('order')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], ProfessorController.prototype, "findAllSort", null);
 __decorate([
     (0, common_1.Get)(':order_field/:order/:limit'),
-    __param(0, (0, common_1.Param)("order_field")),
-    __param(1, (0, common_1.Param)("order")),
-    __param(2, (0, common_1.Param)("limit", common_1.ParseIntPipe)),
+    __param(0, (0, common_1.Param)('order_field')),
+    __param(1, (0, common_1.Param)('order')),
+    __param(2, (0, common_1.Param)('limit', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String, Number]),
     __metadata("design:returntype", Promise)
@@ -64,6 +65,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProfessorController.prototype, "findUser", null);
 exports.ProfessorController = ProfessorController = __decorate([
+    (0, Public_1.Public)(),
     (0, common_1.Controller)('professor'),
     __metadata("design:paramtypes", [professor_service_1.ProfessorService])
 ], ProfessorController);

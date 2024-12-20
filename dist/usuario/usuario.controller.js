@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const usuario_service_1 = require("./usuario.service");
 const create_usuario_dto_1 = require("./dto/create-usuario.dto");
 const update_usuario_dto_1 = require("./dto/update-usuario.dto");
+const currentUser_1 = require("../auth/decorators/currentUser");
+const Public_1 = require("../auth/decorators/Public");
 let UsuarioController = class UsuarioController {
     constructor(usuarioService) {
         this.usuarioService = usuarioService;
@@ -24,21 +26,16 @@ let UsuarioController = class UsuarioController {
     async create(userData) {
         return await this.usuarioService.create(userData);
     }
-    async findAll() {
-        return await this.usuarioService.findAll();
+    async deleteUser(id, current_id) {
+        return await this.usuarioService.remove(id, current_id);
     }
-    async findUser(id) {
-        return await this.usuarioService.findUser(id);
-    }
-    async deleteUser(id) {
-        return await this.usuarioService.remove(id);
-    }
-    async update(id, data) {
-        return await this.usuarioService.update(id, data);
+    async update(id, data, current_id) {
+        return await this.usuarioService.update(id, data, current_id);
     }
 };
 exports.UsuarioController = UsuarioController;
 __decorate([
+    (0, Public_1.Public)(),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)(new common_1.ValidationPipe({ whitelist: true }))),
     __metadata("design:type", Function),
@@ -46,31 +43,20 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], UsuarioController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], UsuarioController.prototype, "findUser", null);
-__decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __param(1, (0, currentUser_1.CurrentUser)('sub')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "deleteUser", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)(new common_1.ValidationPipe({ whitelist: true }))),
+    __param(2, (0, currentUser_1.CurrentUser)('sub')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, update_usuario_dto_1.UpdateUsuarioDto]),
+    __metadata("design:paramtypes", [Number, update_usuario_dto_1.UpdateUsuarioDto, Number]),
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "update", null);
 exports.UsuarioController = UsuarioController = __decorate([

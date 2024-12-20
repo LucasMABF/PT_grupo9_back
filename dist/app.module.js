@@ -13,14 +13,35 @@ const comentario_module_1 = require("./comentario/comentario.module");
 const prisma_module_1 = require("./prisma/prisma.module");
 const usuario_module_1 = require("./usuario/usuario.module");
 const professor_module_1 = require("./professor/professor.module");
+const auth_module_1 = require("./auth/auth.module");
+const jwt_1 = require("@nestjs/jwt");
+const config_1 = require("@nestjs/config");
+const core_1 = require("@nestjs/core");
+const auth_guard_1 = require("./auth/guards/auth-guard");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [avaliacao_module_1.AvaliacaoModule, prisma_module_1.PrismaModule, usuario_module_1.UsuarioModule, comentario_module_1.ComentarioModule, professor_module_1.ProfessorModule],
+        imports: [
+            avaliacao_module_1.AvaliacaoModule,
+            prisma_module_1.PrismaModule,
+            usuario_module_1.UsuarioModule,
+            comentario_module_1.ComentarioModule,
+            professor_module_1.ProfessorModule,
+            auth_module_1.AuthModule,
+            jwt_1.JwtModule,
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+            }),
+        ],
         controllers: [],
-        providers: [],
+        providers: [
+            {
+                provide: core_1.APP_GUARD,
+                useClass: auth_guard_1.AuthGuard,
+            },
+        ],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

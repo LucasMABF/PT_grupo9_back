@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 import { CreateAvaliacaoDto } from './dto/create-avaliacao.dto';
@@ -8,7 +12,10 @@ import { UpdateAvaliacaoDto } from './dto/update-avaliacao.dto';
 export class AvaliacaoService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(data: CreateAvaliacaoDto) {
+  async create(data: CreateAvaliacaoDto, current_id: number) {
+    if (current_id !== data.userId) {
+      throw new UnauthorizedException();
+    }
     return await this.prisma.avaliacao.create({
       data: {
         conteudo: data.conteudo,
@@ -27,20 +34,25 @@ export class AvaliacaoService {
           connect: { id: data.disciplinaId },
         },
         professor: {
-          connect: {id: data.professorId},
-        }
+          connect: { id: data.professorId },
+        },
       },
     });
   }
 
   async findAll(order_field?: string, order?: string, limit?: number) {
     return await this.prisma.avaliacao.findMany({
-      orderBy: [
-      {[order_field]: order}
-      ],
+      orderBy: [{ [order_field]: order }],
       take: limit,
       include: {
-        user: true,
+        user: {
+          select: {
+            nome: true,
+            departamento: true,
+            curso: true,
+            foto_perfil: true,
+          },
+        },
         professor: true,
         disciplina: true,
         comentarios: true,
@@ -52,7 +64,14 @@ export class AvaliacaoService {
     return await this.prisma.avaliacao.findUnique({
       where: { id },
       include: {
-        user: true,
+        user: {
+          select: {
+            nome: true,
+            departamento: true,
+            curso: true,
+            foto_perfil: true,
+          },
+        },
         professor: true,
         disciplina: true,
         comentarios: true,
@@ -60,7 +79,19 @@ export class AvaliacaoService {
     });
   }
 
-  async update(id: number, data: UpdateAvaliacaoDto) {
+  async update(id: number, data: UpdateAvaliacaoDto, current_id: number) {
+    const avaliacao = await this.prisma.avaliacao.findUnique({
+      where: { id },
+    });
+
+    if (!avaliacao) {
+      throw new NotFoundException(`Avaliação with ID ${id} not found.`);
+    }
+
+    if (avaliacao.userId !== current_id) {
+      throw new UnauthorizedException();
+    }
+
     return await this.prisma.avaliacao.update({
       where: { id },
       data: {
@@ -69,7 +100,19 @@ export class AvaliacaoService {
     });
   }
 
-  async remove(id: number) {
+  async remove(id: number, current_id: number) {
+    const avaliacao = await this.prisma.avaliacao.findUnique({
+      where: { id },
+    });
+
+    if (!avaliacao) {
+      throw new NotFoundException(`Avaliação with ID ${id} not found.`);
+    }
+
+    if (avaliacao.userId !== current_id) {
+      throw new UnauthorizedException();
+    }
+
     return await this.prisma.avaliacao.delete({
       where: { id },
     });

@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 import { CreateCommentDto } from './dto/create-comment.dto';
@@ -8,7 +12,11 @@ import { UpdateCommentDto } from './dto/update-comment.dto';
 export class ComentarioService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(data: CreateCommentDto) {
+  async create(data: CreateCommentDto, current_id: number) {
+    if (current_id !== data.userId) {
+      throw new UnauthorizedException();
+    }
+
     return await this.prisma.comentario.create({
       data,
     });
@@ -17,7 +25,14 @@ export class ComentarioService {
   async findAll() {
     return await this.prisma.comentario.findMany({
       include: {
-        user: true,
+        user: {
+          select: {
+            nome: true,
+            departamento: true,
+            curso: true,
+            foto_perfil: true,
+          },
+        },
         avaliacao: true,
       },
     });
@@ -26,11 +41,18 @@ export class ComentarioService {
   async findAllByAvaliacao(id_avaliacao: number) {
     return await this.prisma.comentario.findMany({
       where: {
-        avaliacaoId: id_avaliacao,      
+        avaliacaoId: id_avaliacao,
       },
-      orderBy: [{createdAt: "asc"}],
+      orderBy: [{ createdAt: 'asc' }],
       include: {
-        user: true,
+        user: {
+          select: {
+            nome: true,
+            departamento: true,
+            curso: true,
+            foto_perfil: true,
+          },
+        },
         avaliacao: true,
       },
     });
@@ -40,20 +62,51 @@ export class ComentarioService {
     return await this.prisma.comentario.findUnique({
       where: { id },
       include: {
-        user: true,
+        user: {
+          select: {
+            nome: true,
+            departamento: true,
+            curso: true,
+            foto_perfil: true,
+          },
+        },
         avaliacao: true,
       },
     });
   }
 
-  async update(id: number, data: UpdateCommentDto) {
+  async update(id: number, data: UpdateCommentDto, current_id: number) {
+    const comentario = await this.prisma.comentario.findUnique({
+      where: { id },
+    });
+
+    if (!comentario) {
+      throw new NotFoundException(`Avaliação with ID ${id} not found.`);
+    }
+
+    if (comentario.userId !== current_id) {
+      throw new UnauthorizedException();
+    }
+
     return await this.prisma.comentario.update({
       where: { id },
       data,
     });
   }
 
-  async remove(id: number) {
+  async remove(id: number, current_id: number) {
+    const comentario = await this.prisma.comentario.findUnique({
+      where: { id },
+    });
+
+    if (!comentario) {
+      throw new NotFoundException(`Avaliação with ID ${id} not found.`);
+    }
+
+    if (comentario.userId !== current_id) {
+      throw new UnauthorizedException();
+    }
+
     return await this.prisma.comentario.delete({
       where: { id },
     });

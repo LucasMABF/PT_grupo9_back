@@ -16,7 +16,10 @@ let AvaliacaoService = class AvaliacaoService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async create(data) {
+    async create(data, current_id) {
+        if (current_id !== data.userId) {
+            throw new common_1.UnauthorizedException();
+        }
         return await this.prisma.avaliacao.create({
             data: {
                 conteudo: data.conteudo,
@@ -36,18 +39,23 @@ let AvaliacaoService = class AvaliacaoService {
                 },
                 professor: {
                     connect: { id: data.professorId },
-                }
+                },
             },
         });
     }
     async findAll(order_field, order, limit) {
         return await this.prisma.avaliacao.findMany({
-            orderBy: [
-                { [order_field]: order }
-            ],
+            orderBy: [{ [order_field]: order }],
             take: limit,
             include: {
-                user: true,
+                user: {
+                    select: {
+                        nome: true,
+                        departamento: true,
+                        curso: true,
+                        foto_perfil: true,
+                    },
+                },
                 professor: true,
                 disciplina: true,
                 comentarios: true,
@@ -58,14 +66,30 @@ let AvaliacaoService = class AvaliacaoService {
         return await this.prisma.avaliacao.findUnique({
             where: { id },
             include: {
-                user: true,
+                user: {
+                    select: {
+                        nome: true,
+                        departamento: true,
+                        curso: true,
+                        foto_perfil: true,
+                    },
+                },
                 professor: true,
                 disciplina: true,
                 comentarios: true,
             },
         });
     }
-    async update(id, data) {
+    async update(id, data, current_id) {
+        const avaliacao = await this.prisma.avaliacao.findUnique({
+            where: { id },
+        });
+        if (!avaliacao) {
+            throw new common_1.NotFoundException(`Avaliação with ID ${id} not found.`);
+        }
+        if (avaliacao.userId !== current_id) {
+            throw new common_1.UnauthorizedException();
+        }
         return await this.prisma.avaliacao.update({
             where: { id },
             data: {
@@ -73,7 +97,16 @@ let AvaliacaoService = class AvaliacaoService {
             },
         });
     }
-    async remove(id) {
+    async remove(id, current_id) {
+        const avaliacao = await this.prisma.avaliacao.findUnique({
+            where: { id },
+        });
+        if (!avaliacao) {
+            throw new common_1.NotFoundException(`Avaliação with ID ${id} not found.`);
+        }
+        if (avaliacao.userId !== current_id) {
+            throw new common_1.UnauthorizedException();
+        }
         return await this.prisma.avaliacao.delete({
             where: { id },
         });

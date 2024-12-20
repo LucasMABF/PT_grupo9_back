@@ -16,4 +16,9 @@ export class UpdateUsuarioDto {
   @IsNotEmpty()
   @IsOptional()
   curso?: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @IsOptional()
+  senha?: string;
 }

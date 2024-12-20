@@ -35,4 +35,10 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], UpdateUsuarioDto.prototype, "curso", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UpdateUsuarioDto.prototype, "senha", void 0);
 //# sourceMappingURL=update-usuario.dto.js.map

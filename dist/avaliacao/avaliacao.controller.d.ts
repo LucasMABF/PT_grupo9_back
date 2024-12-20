@@ -4,26 +4,21 @@ import { UpdateAvaliacaoDto } from './dto/update-avaliacao.dto';
 export declare class AvaliacaoController {
     private readonly avaliacaoService;
     constructor(avaliacaoService: AvaliacaoService);
-    create(data: CreateAvaliacaoDto): Promise<{
-        userId: number;
-        disciplinaId: number;
-        professorId: number;
-        conteudo: string;
+    create(data: CreateAvaliacaoDto, current_id: number): Promise<{
         id: number;
+        userId: number;
+        professorId: number;
+        disciplinaId: number;
+        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
     findAll(): Promise<({
         user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
             nome: string;
-            senha: string;
             departamento: string;
             curso: string;
-            foto_perfil: Buffer | null;
+            foto_perfil: Buffer;
         };
         professor: {
             id: number;
@@ -39,33 +34,28 @@ export declare class AvaliacaoController {
             nome: string;
         };
         comentarios: {
+            id: number;
             userId: number;
             conteudo: string;
-            id: number;
             createdAt: Date;
             updatedAt: Date;
             avaliacaoId: number;
         }[];
     } & {
-        userId: number;
-        disciplinaId: number;
-        professorId: number;
-        conteudo: string;
         id: number;
+        userId: number;
+        professorId: number;
+        disciplinaId: number;
+        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     })[]>;
     findAllSort(order_field: string, order: string): Promise<({
         user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
             nome: string;
-            senha: string;
             departamento: string;
             curso: string;
-            foto_perfil: Buffer | null;
+            foto_perfil: Buffer;
         };
         professor: {
             id: number;
@@ -81,33 +71,28 @@ export declare class AvaliacaoController {
             nome: string;
         };
         comentarios: {
+            id: number;
             userId: number;
             conteudo: string;
-            id: number;
             createdAt: Date;
             updatedAt: Date;
             avaliacaoId: number;
         }[];
     } & {
-        userId: number;
-        disciplinaId: number;
-        professorId: number;
-        conteudo: string;
         id: number;
+        userId: number;
+        professorId: number;
+        disciplinaId: number;
+        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     })[]>;
     findSort(order_field: string, order: string, limit: number): Promise<({
         user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
             nome: string;
-            senha: string;
             departamento: string;
             curso: string;
-            foto_perfil: Buffer | null;
+            foto_perfil: Buffer;
         };
         professor: {
             id: number;
@@ -123,33 +108,28 @@ export declare class AvaliacaoController {
             nome: string;
         };
         comentarios: {
+            id: number;
             userId: number;
             conteudo: string;
-            id: number;
             createdAt: Date;
             updatedAt: Date;
             avaliacaoId: number;
         }[];
     } & {
-        userId: number;
-        disciplinaId: number;
-        professorId: number;
-        conteudo: string;
         id: number;
+        userId: number;
+        professorId: number;
+        disciplinaId: number;
+        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     })[]>;
     findOne(id: number): Promise<{
         user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
             nome: string;
-            senha: string;
             departamento: string;
             curso: string;
-            foto_perfil: Buffer | null;
+            foto_perfil: Buffer;
         };
         professor: {
             id: number;
@@ -165,37 +145,37 @@ export declare class AvaliacaoController {
             nome: string;
         };
         comentarios: {
+            id: number;
             userId: number;
             conteudo: string;
-            id: number;
             createdAt: Date;
             updatedAt: Date;
             avaliacaoId: number;
         }[];
     } & {
-        userId: number;
-        disciplinaId: number;
-        professorId: number;
-        conteudo: string;
         id: number;
+        userId: number;
+        professorId: number;
+        disciplinaId: number;
+        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
-    update(id: number, data: UpdateAvaliacaoDto): Promise<{
-        userId: number;
-        disciplinaId: number;
-        professorId: number;
-        conteudo: string;
+    update(id: number, data: UpdateAvaliacaoDto, current_id: number): Promise<{
         id: number;
+        userId: number;
+        professorId: number;
+        disciplinaId: number;
+        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
-    remove(id: number): Promise<{
-        userId: number;
-        disciplinaId: number;
-        professorId: number;
-        conteudo: string;
+    remove(id: number, current_id: number): Promise<{
         id: number;
+        userId: number;
+        professorId: number;
+        disciplinaId: number;
+        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     }>;

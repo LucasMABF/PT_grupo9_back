@@ -16,7 +16,10 @@ let ComentarioService = class ComentarioService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    async create(data) {
+    async create(data, current_id) {
+        if (current_id !== data.userId) {
+            throw new common_1.UnauthorizedException();
+        }
         return await this.prisma.comentario.create({
             data,
         });
@@ -24,7 +27,14 @@ let ComentarioService = class ComentarioService {
     async findAll() {
         return await this.prisma.comentario.findMany({
             include: {
-                user: true,
+                user: {
+                    select: {
+                        nome: true,
+                        departamento: true,
+                        curso: true,
+                        foto_perfil: true,
+                    },
+                },
                 avaliacao: true,
             },
         });
@@ -34,9 +44,16 @@ let ComentarioService = class ComentarioService {
             where: {
                 avaliacaoId: id_avaliacao,
             },
-            orderBy: [{ createdAt: "asc" }],
+            orderBy: [{ createdAt: 'asc' }],
             include: {
-                user: true,
+                user: {
+                    select: {
+                        nome: true,
+                        departamento: true,
+                        curso: true,
+                        foto_perfil: true,
+                    },
+                },
                 avaliacao: true,
             },
         });
@@ -45,18 +62,43 @@ let ComentarioService = class ComentarioService {
         return await this.prisma.comentario.findUnique({
             where: { id },
             include: {
-                user: true,
+                user: {
+                    select: {
+                        nome: true,
+                        departamento: true,
+                        curso: true,
+                        foto_perfil: true,
+                    },
+                },
                 avaliacao: true,
             },
         });
     }
-    async update(id, data) {
+    async update(id, data, current_id) {
+        const comentario = await this.prisma.comentario.findUnique({
+            where: { id },
+        });
+        if (!comentario) {
+            throw new common_1.NotFoundException(`Avaliação with ID ${id} not found.`);
+        }
+        if (comentario.userId !== current_id) {
+            throw new common_1.UnauthorizedException();
+        }
         return await this.prisma.comentario.update({
             where: { id },
             data,
         });
     }
-    async remove(id) {
+    async remove(id, current_id) {
+        const comentario = await this.prisma.comentario.findUnique({
+            where: { id },
+        });
+        if (!comentario) {
+            throw new common_1.NotFoundException(`Avaliação with ID ${id} not found.`);
+        }
+        if (comentario.userId !== current_id) {
+            throw new common_1.UnauthorizedException();
+        }
         return await this.prisma.comentario.delete({
             where: { id },
         });
