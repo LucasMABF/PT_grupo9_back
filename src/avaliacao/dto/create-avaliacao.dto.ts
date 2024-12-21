@@ -9,10 +9,6 @@ import {
 export class CreateAvaliacaoDto {
   @IsInt()
   @IsNotEmpty()
-  userId: number;
-
-  @IsInt()
-  @IsNotEmpty()
   disciplinaId: number;
 
   @IsInt()

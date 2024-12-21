@@ -92,37 +92,13 @@ export class UsuarioService {
     return user;
   }
 
-  async remove(id: number, current_id: number) {
-    const user = await this.prisma.user.findUnique({
-      where: { id },
-    });
-
-    if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found.`);
-    }
-
-    if (user.id !== current_id) {
-      throw new UnauthorizedException();
-    }
-
+  async remove(id: number) {
     return await this.prisma.user.delete({
       where: { id },
     });
   }
 
-  async update(id: number, data: UpdateUsuarioDto, current_id: number) {
-    const user = await this.prisma.user.findUnique({
-      where: { id },
-    });
-
-    if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found.`);
-    }
-
-    if (user.id !== current_id) {
-      throw new UnauthorizedException();
-    }
-
+  async update(id: number, data: UpdateUsuarioDto) {
     const hashedPassword = data.senha
       ? await bcrypt.hash(data.senha, 10)
       : undefined;

@@ -20,6 +20,10 @@ let ProfessorService = class ProfessorService {
         return await this.prisma.professor.findMany({
             orderBy: [{ [order_field]: order }],
             take: limit,
+            include: {
+                avaliacoes: true,
+                disciplinas: true,
+            }
         });
     }
     async findProfessor(id) {
@@ -27,6 +31,10 @@ let ProfessorService = class ProfessorService {
             where: {
                 id: id,
             },
+            include: {
+                avaliacoes: true,
+                disciplinas: true,
+            }
         });
     }
 };

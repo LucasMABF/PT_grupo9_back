@@ -17,9 +17,6 @@ let AvaliacaoService = class AvaliacaoService {
         this.prisma = prisma;
     }
     async create(data, current_id) {
-        if (current_id !== data.userId) {
-            throw new common_1.UnauthorizedException();
-        }
         return await this.prisma.avaliacao.create({
             data: {
                 conteudo: data.conteudo,
@@ -32,7 +29,7 @@ let AvaliacaoService = class AvaliacaoService {
                     }
                     : undefined,
                 user: {
-                    connect: { id: data.userId },
+                    connect: { id: current_id },
                 },
                 disciplina: {
                     connect: { id: data.disciplinaId },

@@ -4,6 +4,33 @@ import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 export declare class UsuarioController {
     private readonly usuarioService;
     constructor(usuarioService: UsuarioService);
+    findUser(current_id: number): Promise<{
+        id: number;
+        nome: string;
+        email: string;
+        departamento: string;
+        curso: string;
+        foto_perfil: Buffer;
+        createdAt: Date;
+        updatedAt: Date;
+        comentarios: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            userId: number;
+            avaliacaoId: number;
+            conteudo: string;
+        }[];
+        avaliacoes: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            userId: number;
+            conteudo: string;
+            professorId: number;
+            disciplinaId: number;
+        }[];
+    }>;
     create(userData: CreateUsuarioDto): Promise<{
         id: number;
         nome: string;
@@ -31,7 +58,7 @@ export declare class UsuarioController {
             disciplinaId: number;
         }[];
     }>;
-    deleteUser(id: number, current_id: number): Promise<{
+    deleteUser(current_id: number): Promise<{
         id: number;
         nome: string;
         email: string;
@@ -42,7 +69,7 @@ export declare class UsuarioController {
         createdAt: Date;
         updatedAt: Date;
     }>;
-    update(id: number, data: UpdateUsuarioDto, current_id: number): Promise<{
+    update(data: UpdateUsuarioDto, current_id: number): Promise<{
         id: number;
         nome: string;
         email: string;

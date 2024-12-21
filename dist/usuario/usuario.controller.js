@@ -23,17 +23,27 @@ let UsuarioController = class UsuarioController {
     constructor(usuarioService) {
         this.usuarioService = usuarioService;
     }
+    async findUser(current_id) {
+        return await this.usuarioService.findUser(current_id);
+    }
     async create(userData) {
         return await this.usuarioService.create(userData);
     }
-    async deleteUser(id, current_id) {
-        return await this.usuarioService.remove(id, current_id);
+    async deleteUser(current_id) {
+        return await this.usuarioService.remove(current_id);
     }
-    async update(id, data, current_id) {
-        return await this.usuarioService.update(id, data, current_id);
+    async update(data, current_id) {
+        return await this.usuarioService.update(current_id, data);
     }
 };
 exports.UsuarioController = UsuarioController;
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, currentUser_1.CurrentUser)('sub')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UsuarioController.prototype, "findUser", null);
 __decorate([
     (0, Public_1.Public)(),
     (0, common_1.Post)(),
@@ -43,20 +53,18 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "create", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __param(1, (0, currentUser_1.CurrentUser)('sub')),
+    (0, common_1.Delete)(),
+    __param(0, (0, currentUser_1.CurrentUser)('sub')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "deleteUser", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
-    __param(1, (0, common_1.Body)(new common_1.ValidationPipe({ whitelist: true }))),
-    __param(2, (0, currentUser_1.CurrentUser)('sub')),
+    (0, common_1.Patch)(),
+    __param(0, (0, common_1.Body)(new common_1.ValidationPipe({ whitelist: true }))),
+    __param(1, (0, currentUser_1.CurrentUser)('sub')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, update_usuario_dto_1.UpdateUsuarioDto, Number]),
+    __metadata("design:paramtypes", [update_usuario_dto_1.UpdateUsuarioDto, Number]),
     __metadata("design:returntype", Promise)
 ], UsuarioController.prototype, "update", null);
 exports.UsuarioController = UsuarioController = __decorate([

@@ -12,12 +12,12 @@ export declare class AuthService {
     validateUser(email: string, senha: string): Promise<{
         senha: any;
         id: number;
-        nome: string;
+        createdAt: Date;
+        updatedAt: Date;
         email: string;
+        nome: string;
         departamento: string;
         curso: string;
         foto_perfil: Buffer | null;
-        createdAt: Date;
-        updatedAt: Date;
     }>;
 }

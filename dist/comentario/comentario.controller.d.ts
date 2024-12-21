@@ -7,10 +7,10 @@ export declare class ComentarioController {
     create(data: CreateCommentDto, current_id: number): Promise<{
         id: number;
         userId: number;
-        avaliacaoId: number;
         conteudo: string;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     }>;
     findAll(): Promise<({
         user: {
@@ -22,19 +22,19 @@ export declare class ComentarioController {
         avaliacao: {
             id: number;
             userId: number;
+            professorId: number;
+            disciplinaId: number;
             conteudo: string;
             createdAt: Date;
             updatedAt: Date;
-            professorId: number;
-            disciplinaId: number;
         };
     } & {
         id: number;
         userId: number;
-        avaliacaoId: number;
         conteudo: string;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     })[]>;
     findAllByAvaliacao(id_avaliacao: number): Promise<({
         user: {
@@ -46,19 +46,19 @@ export declare class ComentarioController {
         avaliacao: {
             id: number;
             userId: number;
+            professorId: number;
+            disciplinaId: number;
             conteudo: string;
             createdAt: Date;
             updatedAt: Date;
-            professorId: number;
-            disciplinaId: number;
         };
     } & {
         id: number;
         userId: number;
-        avaliacaoId: number;
         conteudo: string;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     })[]>;
     findOne(id: number): Promise<{
         user: {
@@ -70,34 +70,34 @@ export declare class ComentarioController {
         avaliacao: {
             id: number;
             userId: number;
+            professorId: number;
+            disciplinaId: number;
             conteudo: string;
             createdAt: Date;
             updatedAt: Date;
-            professorId: number;
-            disciplinaId: number;
         };
     } & {
         id: number;
         userId: number;
-        avaliacaoId: number;
         conteudo: string;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     }>;
     update(id: number, data: UpdateCommentDto, current_id: number): Promise<{
         id: number;
         userId: number;
-        avaliacaoId: number;
         conteudo: string;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     }>;
     remove(id: number, current_id: number): Promise<{
         id: number;
         userId: number;
-        avaliacaoId: number;
         conteudo: string;
         createdAt: Date;
         updatedAt: Date;
+        avaliacaoId: number;
     }>;
 }
