@@ -10,7 +10,21 @@ export class ProfessorService {
       orderBy: [{ [order_field]: order }],
       take: limit,
       include: {
-        avaliacoes: true,
+        avaliacoes: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                nome: true,
+                departamento: true,
+                curso: true,
+                foto_perfil: true,
+              }
+            },
+            professor: true,
+            disciplina: true,
+          }
+        },
         disciplinas: true,
       }
     });
@@ -22,7 +36,25 @@ export class ProfessorService {
         id: id,
       },
       include: {
-        avaliacoes: true,
+        avaliacoes: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                nome: true,
+                departamento: true,
+                curso: true,
+                foto_perfil: true,
+              }
+            },
+            professor: {
+              select: {
+                nome: true,
+              }
+            },
+            disciplina: true,
+          }
+        },
         disciplinas: true,
       }
     });

@@ -37,6 +37,7 @@ let AuthService = class AuthService {
         });
         return {
             access_token: jwtToken,
+            id: isUserValid.id,
         };
     }
     async validateUser(email, senha) {

@@ -5,11 +5,11 @@ export declare class AvaliacaoService {
     private readonly prisma;
     constructor(prisma: PrismaService);
     create(data: CreateAvaliacaoDto, current_id: number): Promise<{
+        disciplinaId: number;
+        professorId: number;
+        conteudo: string;
         id: number;
         userId: number;
-        professorId: number;
-        disciplinaId: number;
-        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
@@ -34,19 +34,19 @@ export declare class AvaliacaoService {
             nome: string;
         };
         comentarios: {
+            conteudo: string;
             id: number;
             userId: number;
-            conteudo: string;
             createdAt: Date;
             updatedAt: Date;
             avaliacaoId: number;
         }[];
     } & {
+        disciplinaId: number;
+        professorId: number;
+        conteudo: string;
         id: number;
         userId: number;
-        professorId: number;
-        disciplinaId: number;
-        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     })[]>;
@@ -71,37 +71,37 @@ export declare class AvaliacaoService {
             nome: string;
         };
         comentarios: {
+            conteudo: string;
             id: number;
             userId: number;
-            conteudo: string;
             createdAt: Date;
             updatedAt: Date;
             avaliacaoId: number;
         }[];
     } & {
+        disciplinaId: number;
+        professorId: number;
+        conteudo: string;
         id: number;
         userId: number;
-        professorId: number;
-        disciplinaId: number;
-        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
     update(id: number, data: UpdateAvaliacaoDto, current_id: number): Promise<{
+        disciplinaId: number;
+        professorId: number;
+        conteudo: string;
         id: number;
         userId: number;
-        professorId: number;
-        disciplinaId: number;
-        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
     remove(id: number, current_id: number): Promise<{
+        disciplinaId: number;
+        professorId: number;
+        conteudo: string;
         id: number;
         userId: number;
-        professorId: number;
-        disciplinaId: number;
-        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
     }>;

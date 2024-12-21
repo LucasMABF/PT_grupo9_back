@@ -80,7 +80,21 @@ export class UsuarioService {
         foto_perfil: true,
         updatedAt: true,
         comentarios: true,
-        avaliacoes: true,
+        avaliacoes: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                nome: true,
+                departamento: true,
+                curso: true,
+                foto_perfil: true,
+              },
+            },
+            professor: true,
+            disciplina: true,
+          },
+        },
       },
       where: { id },
     });

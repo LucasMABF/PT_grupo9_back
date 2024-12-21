@@ -21,7 +21,28 @@ export declare class UsuarioController {
             avaliacaoId: number;
             conteudo: string;
         }[];
-        avaliacoes: {
+        avaliacoes: ({
+            user: {
+                id: number;
+                nome: string;
+                departamento: string;
+                curso: string;
+                foto_perfil: Buffer;
+            };
+            professor: {
+                id: number;
+                nome: string;
+                departamento: string;
+                createdAt: Date;
+                updatedAt: Date;
+            };
+            disciplina: {
+                id: number;
+                nome: string;
+                createdAt: Date;
+                updatedAt: Date;
+            };
+        } & {
             id: number;
             createdAt: Date;
             updatedAt: Date;
@@ -29,7 +50,7 @@ export declare class UsuarioController {
             conteudo: string;
             professorId: number;
             disciplinaId: number;
-        }[];
+        })[];
     }>;
     create(userData: CreateUsuarioDto): Promise<{
         id: number;

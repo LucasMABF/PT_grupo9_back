@@ -5,9 +5,9 @@ export declare class ComentarioService {
     private readonly prisma;
     constructor(prisma: PrismaService);
     create(data: CreateCommentDto, current_id: number): Promise<{
+        conteudo: string;
         id: number;
         userId: number;
-        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
         avaliacaoId: number;
@@ -20,18 +20,18 @@ export declare class ComentarioService {
             foto_perfil: Buffer;
         };
         avaliacao: {
+            disciplinaId: number;
+            professorId: number;
+            conteudo: string;
             id: number;
             userId: number;
-            professorId: number;
-            disciplinaId: number;
-            conteudo: string;
             createdAt: Date;
             updatedAt: Date;
         };
     } & {
+        conteudo: string;
         id: number;
         userId: number;
-        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
         avaliacaoId: number;
@@ -44,18 +44,18 @@ export declare class ComentarioService {
             foto_perfil: Buffer;
         };
         avaliacao: {
+            disciplinaId: number;
+            professorId: number;
+            conteudo: string;
             id: number;
             userId: number;
-            professorId: number;
-            disciplinaId: number;
-            conteudo: string;
             createdAt: Date;
             updatedAt: Date;
         };
     } & {
+        conteudo: string;
         id: number;
         userId: number;
-        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
         avaliacaoId: number;
@@ -68,34 +68,34 @@ export declare class ComentarioService {
             foto_perfil: Buffer;
         };
         avaliacao: {
+            disciplinaId: number;
+            professorId: number;
+            conteudo: string;
             id: number;
             userId: number;
-            professorId: number;
-            disciplinaId: number;
-            conteudo: string;
             createdAt: Date;
             updatedAt: Date;
         };
     } & {
+        conteudo: string;
         id: number;
         userId: number;
-        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
         avaliacaoId: number;
     }>;
     update(id: number, data: UpdateCommentDto, current_id: number): Promise<{
+        conteudo: string;
         id: number;
         userId: number;
-        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
         avaliacaoId: number;
     }>;
     remove(id: number, current_id: number): Promise<{
+        conteudo: string;
         id: number;
         userId: number;
-        conteudo: string;
         createdAt: Date;
         updatedAt: Date;
         avaliacaoId: number;
